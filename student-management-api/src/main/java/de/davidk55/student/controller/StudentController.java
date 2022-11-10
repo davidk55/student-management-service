@@ -1,7 +1,9 @@
 package de.davidk55.student.controller;
 
+import de.davidk55.student.model.Student;
 import de.davidk55.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,4 +17,8 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @PostMapping("/students")
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+        return ResponseEntity.ok(studentService.createStudent(student));
+    }
 }
