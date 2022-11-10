@@ -18,6 +18,12 @@ function StudentList() {
     fetchStudents();
   }, []);
 
+  function deleteStudent(id: string) {
+    StudentService.deleteStudent(id);
+    setStudents((prevStudents) => {
+      return prevStudents.filter((prevStudent) => prevStudent.id != id);
+    });
+  }
 
 
   return (
@@ -51,6 +57,7 @@ function StudentList() {
                   </button>
                   <button
                     className='text-[#AE5C5C] hover:text-red-400'
+                    onClick={() => deleteStudent(student.id)}
                   >
                     Delete
                   </button>

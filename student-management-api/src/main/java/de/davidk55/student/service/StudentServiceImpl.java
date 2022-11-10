@@ -5,9 +5,11 @@ import de.davidk55.student.model.Student;
 import de.davidk55.student.repository.StudentRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,4 +44,14 @@ public class StudentServiceImpl implements StudentService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public boolean deleteStudent(Long id) {
+        Optional<StudentEntity> student = studentRepository.findById(id);
+        if(student.isEmpty()) return false;
+
+        studentRepository.delete(student.get());
+        return true;
+    }
+
 }
