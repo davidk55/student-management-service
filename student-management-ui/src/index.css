@@ -19,3 +19,15 @@
     src: url('./assets/fonts/Roboto-Bold.ttf');
   }
 }
+
+th {
+  text-align: left;
+  font-weight: 400;
+  color: #878787;
+  padding: 1rem;
+}
+
+td {
+  font-weight: 300;
+  padding: 1rem;
+}

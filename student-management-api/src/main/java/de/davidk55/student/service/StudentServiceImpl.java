@@ -7,6 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class StudentServiceImpl implements StudentService {
 
@@ -23,5 +26,20 @@ public class StudentServiceImpl implements StudentService {
         BeanUtils.copyProperties(student, studentEntity);
         studentRepository.save(studentEntity);
         return student;
+    }
+
+    @Override
+    public List<Student> getAllStudents() {
+        List<StudentEntity> studentEntities = studentRepository.findAll();
+
+        return studentEntities
+                .stream()
+                .map(studentEntity -> new Student(
+                        studentEntity.getId(),
+                        studentEntity.getFirstName(),
+                        studentEntity.getLastName(),
+                        studentEntity.getEmail()
+                ))
+                .collect(Collectors.toList());
     }
 }
