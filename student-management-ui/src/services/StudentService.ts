@@ -53,6 +53,51 @@ class StudentService {
     }
   }
 
+  async updateStudent(id: string, student: Student) {
+    try {
+      const { data } = await axios.put<Student>(
+        `${STUDENT_API_BASE_URL}/${id}`,
+        student,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+        }
+      );
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log('error message: ', error.message);
+        return error.message;
+      } else {
+        console.log('unexpected error: ', error);
+        return 'An unexpected error occurred';
+      }
+    }
+  }
+
+  async getStudentById(id: string) {
+    try {
+      const { data } = await axios.get<Student>(
+        `${STUDENT_API_BASE_URL}/${id}`,
+        {
+          headers: {
+            Accept: 'application/json',
+          },
+        }
+      );
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log('error message: ', error.message);
+        return error.message;
+      } else {
+        console.log('unexpected error: ', error);
+        return 'An unexpected error occurred';
+      }
+    }
+  }
 
   async deleteStudent(id: string) {
     try {

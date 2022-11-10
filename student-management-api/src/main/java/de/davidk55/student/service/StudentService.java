@@ -12,4 +12,7 @@ public interface StudentService  {
 
     boolean deleteStudent(Long id);
 
+    Student getStudentById(Long id);
+
+    Student updateStudent(Long id, Student student);
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import StudentService from '../services/StudentService';
 
 interface Student {
@@ -7,8 +8,10 @@ interface Student {
   lastName: string;
   email: string;
 }
+
 function StudentList() {
   const [students, setStudents] = useState<Student[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchStudents() {
@@ -25,6 +28,9 @@ function StudentList() {
     });
   }
 
+  function updateStudent(id: string) {
+    navigate(`/updateStudent/${id}`);
+  }
 
   return (
     <div className='h-3/4 w-9/12'>
@@ -52,6 +58,7 @@ function StudentList() {
                 <td className='flex gap-9'>
                   <button
                     className='text-[#5390A3] hover:text-blue-300'
+                    onClick={() => updateStudent(student.id)}
                   >
                     Edit
                   </button>

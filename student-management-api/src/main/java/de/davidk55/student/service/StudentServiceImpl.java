@@ -54,4 +54,28 @@ public class StudentServiceImpl implements StudentService {
         return true;
     }
 
+    @Override
+    public Student getStudentById(Long id) {
+        Optional<StudentEntity> studentOpt = studentRepository.findById(id);
+        if(studentOpt.isEmpty()) return null;
+
+        Student student = new Student();
+        BeanUtils.copyProperties(studentOpt.get(), student);
+        return student;
+    }
+
+    @Override
+    public Student updateStudent(Long id, Student student) {
+        Optional<StudentEntity> studentOpt = studentRepository.findById(id);
+
+        if(studentOpt.isEmpty()) return null;
+        StudentEntity studentEntity = studentOpt.get();
+
+        studentEntity.setFirstName(student.getFirstName());
+        studentEntity.setLastName(student.getLastName());
+        studentEntity.setEmail(student.getEmail());
+
+        studentRepository.save(studentEntity);
+        return student;
+    }
 }
