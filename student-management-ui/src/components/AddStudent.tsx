@@ -19,6 +19,8 @@ function AddStudent() {
     placeholder: string;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     required: boolean;
+    pattern: string;
+    errorMessage: string;
   }
 
   const inputs: Input[] = [
@@ -29,6 +31,9 @@ function AddStudent() {
       placeholder: 'First Name',
       handleChange: handleChange,
       required: true,
+      pattern: '^[A-Za-z]{2,30}$',
+      errorMessage:
+        'You should use atleast 2 characters and no numbers or special characters.',
     },
     {
       type: 'text',
@@ -37,6 +42,9 @@ function AddStudent() {
       placeholder: 'Last Name',
       handleChange: handleChange,
       required: true,
+      pattern: '^[A-Za-z]{2,30}$',
+      errorMessage:
+        'You should use atleast 2 characters and no numbers or special characters.',
     },
     {
       type: 'email',
@@ -45,6 +53,8 @@ function AddStudent() {
       placeholder: 'Email',
       handleChange: handleChange,
       required: true,
+      pattern: '^[w-.]+@([w-]+.)+[w-]{2,4}$',
+      errorMessage: 'Enter a valid email address.',
     },
   ];
 
