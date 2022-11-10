@@ -31,3 +31,11 @@ td {
   font-weight: 300;
   padding: 1rem;
 }
+
+.focused:invalid + #error-message {
+  visibility: visible;
+}
+
+.focused:invalid {
+  border: 1px solid red;
+}
