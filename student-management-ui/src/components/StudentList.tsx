@@ -37,6 +37,7 @@ function StudentList() {
       <main className='flex  flex-col'>
         <button
           className='mb-4 max-w-max rounded-md bg-[#5C7DAE] py-2 px-10 text-white hover:bg-cyan-800'
+          onClick={() => navigate('/addStudent')}
         >
           Add Student
         </button>
