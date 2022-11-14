@@ -6,6 +6,8 @@
 
 - Spring Boot
 - Lombok
+- JUnit5
+- Mockito
 - Docker
 - PostgreSQL
 - DBeaver
